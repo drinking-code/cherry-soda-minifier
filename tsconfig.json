@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
+    "baseUrl": ".",
+    "lib": ["ESNext"],
     "module": "esnext",
     "target": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "strict": true,
     "downlevelIteration": true,
     "skipLibCheck": true,
@@ -13,8 +12,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
-    "types": [
-      "bun-types" // add Bun global
-    ]
+    "types": ["bun-types"],
   }
 }

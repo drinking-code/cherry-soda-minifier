@@ -4,7 +4,7 @@ import {type TransformOptions} from 'esbuild'
 
 import {type MinimizedResult} from './types.js'
 
-export default async function esbuildMinify(
+export async function esbuildMinify(
     fileName: string, code: string,
     sourceMap: RawSourceMap | undefined,
     minimizerOptions: Partial<ProcessOptions> & Partial<TransformOptions> = {}

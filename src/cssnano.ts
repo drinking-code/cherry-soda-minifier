@@ -4,7 +4,7 @@ import {type Options} from 'cssnano'
 
 import {type MinimizedResult} from './types.js'
 
-export default async function cssnanoMinify(
+export async function cssnanoMinify(
     fileName: string, code: string,
     sourceMap: RawSourceMap | undefined,
     minimizerOptions: Partial<ProcessOptions> & Partial<Options> = {}
@@ -16,7 +16,7 @@ export default async function cssnanoMinify(
     if (sourceMap)
         postcssOptions.map = {annotation: false}
 
-    const cssnano = await import('cssnano')
+    const cssnano = (await import('cssnano') as { default: Function }).default
     const result = await postcss([cssnano(minimizerOptions)])
         .process(code, postcssOptions)
 

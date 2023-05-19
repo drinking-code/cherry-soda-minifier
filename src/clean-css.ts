@@ -2,16 +2,18 @@ import path from 'path'
 
 import {type RawSourceMap} from 'source-map'
 import {type ProcessOptions} from 'postcss'
-import type CleanCSS, {type Constructor} from 'clean-css'
+import type CleanCSS from 'clean-css'
+import {type Constructor} from 'clean-css'
 
 import {type MinimizedResult} from './types.js'
 
-export default async function cleanCssMinify(
+export async function cleanCssMinify(
     fileName: string, code: string,
     sourceMap: RawSourceMap | undefined,
     minimizerOptions: Partial<ProcessOptions> & Partial<CleanCSS.OptionsPromise>
 ): Promise<MinimizedResult> {
-    const CleanCSS: Constructor = await import('clean-css')
+    // const CleanCSS: Constructor = await import('clean-css')
+    const CleanCSS: Constructor = require('clean-css')
     const result = await new CleanCSS({
         sourceMap: Boolean(sourceMap),
         ...minimizerOptions,

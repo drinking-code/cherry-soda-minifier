@@ -4,7 +4,7 @@ import {type CompressOptions, type MinifyOptions} from 'csso'
 
 import {type MinimizedResult} from './types.js'
 
-export default async function cssoMinify(
+export async function cssoMinify(
     fileName: string, code: string,
     sourceMap: RawSourceMap | undefined,
     minimizerOptions: Partial<ProcessOptions> & Partial<MinifyOptions & CompressOptions>

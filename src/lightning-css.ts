@@ -4,7 +4,7 @@ import {type TransformOptions, type CustomAtRules} from 'lightningcss'
 
 import {type MinimizedResult} from './types.js'
 
-export default async function lightningCssMinify(
+export async function lightningCssMinify(
     fileName: string, code: string,
     sourceMap: RawSourceMap | undefined,
     minimizerOptions: Partial<ProcessOptions> & Partial<TransformOptions<CustomAtRules>> = {}

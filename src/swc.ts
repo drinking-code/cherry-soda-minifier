@@ -4,7 +4,7 @@ import {type Options} from '@swc/css'
 
 import {type MinimizedResult} from './types.js'
 
-export default async function swcMinify(
+export async function swcMinify(
     fileName: string, code: string,
     sourceMap: RawSourceMap | undefined,
     minimizerOptions: Partial<ProcessOptions> & Partial<Options> = {}
