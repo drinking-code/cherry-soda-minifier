@@ -8,15 +8,18 @@
     "@swc/css": "^0.0.20",
     "@types/clean-css": "^4.2.6",
     "@types/csso": "^5.0.0",
+    "@types/uglify-js": "^3.17.1",
     "bun-types": "^0.5.0",
     "esbuild": "^0.17.19",
     "lightningcss": "^1.20.0"
   },
   "dependencies": {
+    "@jridgewell/trace-mapping": "^0.3.18",
     "cherry-soda": "^0.1.2-experimental",
     "cssnano": "^6.0.1",
     "postcss": "^8.4.23",
-    "source-map": "^0.7.4"
+    "source-map": "^0.7.4",
+    "terser": "^5.17.4"
   },
   "peerDependenciesMeta": {
     "@swc/css": {
@@ -32,6 +35,9 @@
       "optional": true
     },
     "lightningcss": {
+      "optional": true
+    },
+    "uglify-js": {
       "optional": true
     }
   }
