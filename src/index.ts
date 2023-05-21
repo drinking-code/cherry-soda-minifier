@@ -1,16 +1,11 @@
-import {BuildResult, type OutputFile, type Plugin} from 'esbuild'
+import {type OutputFile, type Plugin} from 'esbuild'
 
 import type {BasePluginOptions as BasePluginOptionsCss, DefinedDefaultMinimizerAndOptions as DefinedDefaultMinimizerAndOptionsCss} from './css/types.js'
 import type {BasePluginOptions as BasePluginOptionsJs, DefinedDefaultMinimizerAndOptions as DefinedDefaultMinimizerAndOptionsJs} from './js/types.js'
 
 import {cssnanoMinify} from './css/cssnano'
 
-export {cssnanoMinify} from './css/cssnano'
-export {cssoMinify} from './css/csso'
-export {cleanCssMinify} from './css/clean-css'
-export {esbuildMinify} from './css/esbuild'
-export {lightningCssMinify} from './css/lightning-css'
-export {swcMinify} from './css/swc'
+export * as CssMinifiers from './css/index'
 
 export function cssMinifierPlugin<T>(options?: BasePluginOptionsCss & DefinedDefaultMinimizerAndOptionsCss<T>): Plugin {
     return {
@@ -54,8 +49,7 @@ export function cssMinifierPlugin<T>(options?: BasePluginOptionsCss & DefinedDef
 import {terserMinify} from './js/terser'
 import {BasicMinimizerImplementation} from './js/types.js'
 
-export {terserMinify} from './js/terser'
-export {uglifyJsMinify} from './js/uglify'
+export * as JsMinifiers from './js/index'
 
 export function jsMinifierPlugin<T>(options?: BasePluginOptionsJs & DefinedDefaultMinimizerAndOptionsJs<T>): Plugin {
     return {

@@ -1,9 +1,20 @@
-import type {ExtractCommentsCondition, ExtractCommentsFunction, ExtractCommentsOptions} from './types.js'
+import type {ExtractCommentsCondition, ExtractCommentsFunction, ExtractCommentsOptions} from './js/types.js'
+import type {Note} from 'esbuild'
 
 export function isObject(value: any): value is object {
     return value != null && (typeof value === "object" || typeof value === "function")
 }
 
+export function formatNote(note: Note) {
+    let formattedNote = ''
+    if (note.location)
+        formattedNote += `[${note.location.file}:${note.location.line}:${note.location.column}] `
+    formattedNote += note.text
+    if (note.location) {
+        formattedNote += `\nSuggestion: ${note.location.suggestion}`
+        formattedNote += `\nLine text:\n${note.location.lineText}\n`
+    }
+}
 
 export function buildComments(options: Partial<{ [key: string]: any}>, extractedComments: Array<string>, extractComments?: ExtractCommentsOptions): typeof ExtractCommentsFunction {
     const condition: { [index: string]: ExtractCommentsCondition } = {}

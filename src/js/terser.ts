@@ -3,7 +3,7 @@ import type {MinifyOptions, CompressOptions, FormatOptions} from 'terser'
 
 import type {ExtractCommentsOptions, MinimizedResult, PredefinedOptions,} from './types.js'
 
-import {buildComments} from './utils.js'
+import {buildComments} from '../utils.js'
 
 export async function terserMinify(
     fileName: string, code: string,

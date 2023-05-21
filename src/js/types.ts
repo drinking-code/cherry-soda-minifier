@@ -1,7 +1,8 @@
 import {type SourceMapInput} from '@jridgewell/trace-mapping'
 import type {ECMA, MinifyOptions as TerserMinifyOptions} from 'terser'
 import type {MinifyOptions as UglifyMinifyOptions} from '@types/uglify-js'
-
+import type {JsMinifyOptions as SwcMinifyOptions} from '@swc/core'
+import type {TransformOptions} from 'esbuild'
 
 import {type TerserOptions} from './terser.js'
 
@@ -55,7 +56,9 @@ export interface BasePluginOptions {
 
 type CustomOptions = Partial<PredefinedOptions> & (
     Partial<TerserMinifyOptions> |
-    Partial<UglifyMinifyOptions>
+    Partial<UglifyMinifyOptions> |
+    Partial<SwcMinifyOptions> |
+    Partial<TransformOptions>
     )
 
 export declare function BasicMinimizerImplementation(

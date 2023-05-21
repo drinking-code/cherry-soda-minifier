@@ -3,7 +3,7 @@ import {type MinifyOptions, type OutputOptions} from '@types/uglify-js'
 
 import type {ExtractCommentsOptions, MinimizedResult, PredefinedOptions,} from './types.js'
 
-import {buildComments} from './utils.js'
+import {buildComments} from '../utils.js'
 
 type UglifyJsOptions = MinifyOptions & { sourceMap: undefined } & { output: OutputOptions & { beautify: boolean } }
 
@@ -13,8 +13,6 @@ export async function uglifyJsMinify(
     minimizerOptions: Partial<PredefinedOptions> & Partial<MinifyOptions>,
     extractComments: ExtractCommentsOptions
 ): Promise<MinimizedResult> {
-
-    // eslint-disable-next-line global-require, import/no-extraneous-dependencies
     const {minify} = await import('uglify-js')
 
     delete minimizerOptions.ecma
@@ -35,7 +33,6 @@ export async function uglifyJsMinify(
                     : {...minimizerOptions.mangle},
         output: {beautify: false, ...minimizerOptions.output},
         // Ignoring sourceMap from options
-        // eslint-disable-next-line no-undefined
         sourceMap: undefined,
         // toplevel: uglifyJsOptions.toplevel
         // nameCache: { ...uglifyJsOptions.toplevel },
@@ -49,7 +46,7 @@ export async function uglifyJsMinify(
         uglifyJsOptions.sourceMap = true
     }
 
-    const extractedComments: Array<string> = [];
+    const extractedComments: Array<string> = []
 
     // @ts-ignore
     uglifyJsOptions.output.comments = buildComments(
@@ -62,10 +59,21 @@ export async function uglifyJsMinify(
 
     return {
         code: result.code,
-        // eslint-disable-next-line no-undefined
         map: result.map ? JSON.parse(result.map) : undefined,
         errors: result.error ? [result.error] : [],
         warnings: result.warnings || [],
         extractedComments,
-    };
+    }
+}
+
+uglifyJsMinify.getMinimizerVersion = (): string | undefined => {
+    let packageJson
+
+    try {
+        packageJson = require('uglify-js/package.json')
+    } catch (error) {
+        // Ignore
+    }
+
+    return packageJson && packageJson.version
 }
