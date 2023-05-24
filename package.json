@@ -1,6 +1,13 @@
 {
   "name": "@cherry-soda/minifier",
   "version": "0.1.0-experimental",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drinking-code/cherry-soda-minifier.git"
+  },
+  "bugs": {
+    "url": "https://github.com/drinking-code/cherry-soda-minifier/issues"
+  },
   "main": "src/index.tsx",
   "module": "src/index.tsx",
   "type": "module",
